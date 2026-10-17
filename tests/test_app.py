@@ -20,3 +20,12 @@ def test_health():
 
         assert response.status_code == 200
         assert response.json["status"] == "healthy"
+
+
+def test_homepage_returns_json():
+    with app.test_client() as client:
+        response = client.get("/")
+
+        assert response.content_type == "application/json"
+        assert response.status_code == 200
+
